@@ -1,22 +1,39 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <link rel="stylesheet" href="style.css" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>gsplat.js - Viewer Demo</title>
-    </head>
-    <body>
-        <div id="progress-container">
-            <dialog open id="progress-dialog">
-                <p>
-                    <label for="progress-indicator">Loading scene...</label>
-                </p>
-                <progress max="100" id="progress-indicator"></progress>
-            </dialog>
-        </div>
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>gsplat.js - Viewer Demo</title>
+</head>
+<body>
+  <div id="card-container">
+    <div class="card" data-url="./splats/yona/yona_7000.splat"> <!-- local:"./test/public/splats/yona/yona_7000.splat" server:"./splats/yona/yona_7000.splat"-->
+        <img src="./splats/yona/yona_head_image.jpg" alt="Scene 1">
+        <p>yona</p>
+    </div>
+    <div class="card" data-url="./splats/waterpark/waterpark_7000.splat">
+        <img src="./splats/waterpark/waterpark_head_image.jpg" alt="Scene 2">
+        <p>waterpark</p>
+    </div>
+    <div class="card" data-url="./splats/office/office_7000.splat">
+      <img src="./splats/office/office_head_image.jpg" alt="Scene 2">
+      <p>office</p>
+    </div>    
+  </div>
 
-        <canvas id="canvas"></canvas>
-        <script type="module" src="/src/main.ts"></script>
-    </body>
+  <a id="back-arrow" href="#" style="display:none; position: absolute; top: 20px; left: 20px;">← Zurück</a>
+
+  <!-- Canvas und Dialog für Ladebildschirm bleiben wie zuvor -->
+  <canvas id="canvas" style="display:none;"></canvas>
+  <div id="progress-container" style="display:none;">
+      <dialog id="progress-dialog">
+          <p><label for="progress-indicator">Loading scene...</label></p>
+          <progress max="100" id="progress-indicator"></progress>
+      </dialog>
+  </div>
+
+    <canvas id="canvas" style="display:none;"></canvas>
+    <script type="module" src="/src/main.ts"></script>
+</body>
 </html>
