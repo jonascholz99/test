@@ -10,7 +10,7 @@ const camera = new SPLAT.Camera();
 const controls = new SPLAT.OrbitControls(camera, canvas);
 
 async function main() {
-    const url = "./public/splats/yona/yona_7000.splat";
+    const url = "./splats/yona/yona_7000.splat";
     await SPLAT.Loader.LoadAsync(url, scene, (progress) => (progressIndicator.value = progress * 100));
     progressDialog.close();
 
