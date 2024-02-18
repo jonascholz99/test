@@ -44,8 +44,9 @@ async function loadScene(url: string) {
 }
 
 document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('click', function() {
-        const url = this.getAttribute('data-url');
+    card.addEventListener('click', (event) => {
+        const target = event.currentTarget as HTMLElement; // Typisierung für TypeScript
+        const url = target.getAttribute('data-url');
         if (url) {
             document.getElementById('card-container')!.style.display = 'none';
             document.getElementById('back-arrow')!.style.display = 'block';
