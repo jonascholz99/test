@@ -1,14 +1,22 @@
 import * as SPLAT from "gsplat";
 
+const canvas = document.getElementById("canvas") as HTMLCanvasElement;
+const progressDialog = document.getElementById("progress-dialog") as HTMLDialogElement;
+const progressIndicator = document.getElementById("progress-indicator") as HTMLProgressElement;
+
+const renderer = new SPLAT.WebGLRenderer(canvas);
 const scene = new SPLAT.Scene();
 const camera = new SPLAT.Camera();
-const renderer = new SPLAT.WebGLRenderer();
-const controls = new SPLAT.OrbitControls(camera, renderer.canvas);
+const controls = new SPLAT.OrbitControls(camera, canvas);
 
 async function main() {
-    const url = "https://huggingface.co/datasets/dylanebert/3dgs/resolve/main/bonsai/bonsai-7k.splat";
+    const url = "https://th-koeln.sciebo.de/s/w7TEFiYhLSaEGnl/download";
+    await SPLAT.Loader.LoadAsync(url, scene, (progress) => (progressIndicator.value = progress * 100));
+    progressDialog.close();
 
-    await SPLAT.Loader.LoadAsync(url, scene, () => {});
+    const handleResize = () => {
+        renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+    };
 
     const frame = () => {
         controls.update();
@@ -16,6 +24,9 @@ async function main() {
 
         requestAnimationFrame(frame);
     };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
 
     requestAnimationFrame(frame);
 }
